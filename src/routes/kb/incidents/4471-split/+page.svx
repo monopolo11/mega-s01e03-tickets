@@ -1,0 +1,45 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: bernardo
+status: accepted
+reviewed: 2026-10-27
+signature: 'v1.eyJzdWIiOiI3OTUiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5MzE2NjUyNiwiZXhwIjoxNzkzMjUyOTI2fQ.vzAhJZNW5DacLvPYjROQRYCMR5kksRIYb2EflsrdI4E'
+---
+
+<script>
+  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+[#4471](/kb/incidents/4471) merged every report about wrong dates into one ticket and marked it
+known. Read by tenant, by way in, and by what each report says, it holds three problems. Each one
+now has its own ticket.
+
+<Callout kind="warn">
+The queued parser fix closes only the first problem. The other two stay after it ships.
+</Callout>
+
+## The problems
+
+<ProblemTable ticket={4471} />
+
+## How to tell them apart
+
+- **parser**: a day-first tenant's date comes out with day and month swapped. Any channel except a
+  booking-v3 form.
+- **hint**: the same swap, through a booking-v3 form. Its hint says MM/DD, people type month first,
+  and the form reads the date day first. A parser fix does not touch it.
+- **one-day move**: no swap. The date moves by one day, or differs between time zones. The desk
+  already noted these in `desk-notes.json`; the old page still counts them under `parser`.
+
+Ignore intake's tag when you file. It guesses from the reporter's browser. The problem depends on the
+tenant and the way in.
+
+## Lessons
+
+- A big ticket can hold more than one bug. Read the bodies before you call it known.
+- The export repeats reports across pages. Count by id.
+
+<RenderStamp {signature} />
