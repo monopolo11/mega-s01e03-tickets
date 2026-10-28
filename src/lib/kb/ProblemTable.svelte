@@ -3,7 +3,7 @@
   import notes from '#lib/data/desk-notes.json';
   import { groupByCause, readAs, uniqueById, type Report } from '#lib/kb/causes';
   import { tenantOf } from '#lib/kb/locales';
-  import { PROBLEM_TICKET, ticketUrl } from '#lib/kb/problems';
+  import { PROBLEM_STATE, PROBLEM_TICKET, ticketUrl } from '#lib/kb/problems';
 
   // One row per cause in a merged ticket, each linked to its own ticket. One-day moves are counted
   // where they're filed, like the desk's CauseTable, and get a footnote row with their ticket.
@@ -24,7 +24,7 @@
 
 <table>
   <thead>
-    <tr><th>problem</th><th>reports</th><th>tenants</th><th>intake tagged otherwise</th><th>seen</th><th>ticket</th></tr>
+    <tr><th>problem</th><th>reports</th><th>tenants</th><th>intake tagged otherwise</th><th>seen</th><th>ticket</th><th>state</th></tr>
   </thead>
   <tbody>
     {#each groups as g (g.cause)}
@@ -36,6 +36,7 @@
         <td>{mistagged(g)}</td>
         <td>{g.firstSeen} → {g.lastSeen}</td>
         <td>{#if g.cause === 'unplaced'}none yet{:else}<a href={ticketUrl(g.cause)}>#{PROBLEM_TICKET[g.cause]}</a>{/if}</td>
+        <td>{g.cause === 'unplaced' ? '' : PROBLEM_STATE[g.cause]}</td>
       </tr>
       {#if moved}
         <tr class="moved">
@@ -43,6 +44,7 @@
           <td>{moved}</td>
           <td colspan="3">read as a one-day move; counted above under <code>{g.cause}</code>, where filed</td>
           <td><a href={ticketUrl('one-day move')}>#{PROBLEM_TICKET['one-day move']}</a></td>
+          <td>{PROBLEM_STATE['one-day move']}</td>
         </tr>
       {/if}
     {/each}

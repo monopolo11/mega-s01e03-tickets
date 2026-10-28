@@ -18,7 +18,8 @@ known. Read by tenant, by way in, and by what each report says, it holds three p
 now has its own ticket.
 
 <Callout kind="warn">
-The queued parser fix closes only the first problem. The other two stay after it ships.
+Engineering closed #4471 on 5 Oct: the parser is fixed, and the booking-v3 form is retired, so the
+hint will not be fixed. Nothing addressed the one-day move. It is still open.
 </Callout>
 
 ## The problems

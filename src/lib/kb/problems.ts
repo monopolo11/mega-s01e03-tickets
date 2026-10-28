@@ -9,4 +9,7 @@ export type Problem = Cause | 'one-day move';
 export const TICKETS_REPO = 'https://github.com/monopolo11/mega-s01e03-tickets';
 export const PROBLEM_TICKET: Record<Problem, number> = { parser: 1, hint: 2, 'one-day move': 3 };
 
+// Where each problem stands after engineering closed #4471 on 5 Oct.
+export const PROBLEM_STATE: Record<Problem, string> = { parser: 'fixed', hint: "won't fix", 'one-day move': 'open' };
+
 export const ticketUrl = (p: Problem) => `${TICKETS_REPO}/issues/${PROBLEM_TICKET[p]}`;
