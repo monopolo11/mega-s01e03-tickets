@@ -31,8 +31,9 @@ The queued parser fix closes only the first problem. The other two stay after it
   booking-v3 form.
 - **hint**: the same swap, through a booking-v3 form. Its hint says MM/DD, people type month first,
   and the form reads the date day first. A parser fix does not touch it.
-- **one-day move**: no swap. The date moves by one day, or differs between time zones. The desk
-  already noted these in `desk-notes.json`; the old page still counts them under `parser`.
+- **one-day move**: no swap. The date moves by one day, or differs between time zones. Time zones,
+  not parsing. The desk already noted these in `desk-notes.json`. Like every desk view, the table
+  counts them where they're filed, under `parser`, and footnotes them.
 
 Ignore intake's tag when you file. It guesses from the reporter's browser. The problem depends on the
 tenant and the way in.
